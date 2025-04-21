@@ -1,0 +1,117 @@
+{
+  "apiUrl": "http://65.109.89.162:9000",
+  "concurrency": 20,
+  "verbose": true,
+  "collections": [],
+  "endpoints": [
+    {
+      "name": "assets",
+      "path": "/atomicassets/v1/assets",
+      "weight": 40,
+      "params": {
+        "limit": 100,
+        "page": 1
+      }
+    },
+    {
+      "name": "asset_by_id",
+      "path": "/atomicassets/v1/assets/{asset_id}",
+      "weight": 20,
+      "dynamicParams": true,
+      "sampleIds": []
+    },
+    {
+      "name": "schemas",
+      "path": "/atomicassets/v1/schemas",
+      "weight": 15,
+      "params": {
+        "limit": 100,
+        "collection_name": "farmersworld"
+      }
+    },
+    {
+      "name": "templates",
+      "path": "/atomicassets/v1/templates",
+      "weight": 15,
+      "params": {
+        "limit": 100,
+        "collection_name": "farmersworld"
+      }
+    },
+    {
+      "name": "collections",
+      "path": "/atomicassets/v1/collections",
+      "weight": 10,
+      "params": {
+        "limit": 100
+      }
+    }
+  ],
+  "scenarios": [
+    {
+      "type": "ramp",
+      "name": "Daily Traffic Pattern",
+      "phases": [
+        {
+          "duration": 300,
+          "target": 10,
+          "variation": 0.2,
+          "description": "Gradual morning increase"
+        },
+        {
+          "duration": 600,
+          "target": 25,
+          "spikeFrequency": 120,
+          "spikeHeight": 60,
+          "description": "Business hours with hourly spikes"
+        }
+      ]
+    },
+    {
+      "type": "chaos",
+      "name": "Failure Mode Testing",
+      "stages": [
+        {
+          "action": "overload",
+          "targetRPS": 100,
+          "duration": 60,
+          "description": "Massive traffic spike"
+        },
+        {
+          "action": "sustain",
+          "duration": 120,
+          "targetRPS": 20,
+          "monitorStability": true,
+          "description": "Recovery monitoring"
+        }
+      ]
+    },
+    {
+      "type": "burst",
+      "name": "Burst Traffic Testing",
+      "bursts": [
+        {
+          "duration": 30,
+          "requestsPerSecond": 20,
+          "cooldown": 15
+        },
+        {
+          "duration": 45,
+          "requestsPerSecond": 40,
+          "cooldown": 20
+        },
+        {
+          "duration": 30,
+          "requestsPerSecond": 60
+        }
+      ]
+    },
+    {
+      "type": "steady",
+      "name": "Baseline Performance",
+      "duration": 300,
+      "requestsPerSecond": 10,
+      "description": "Steady baseline traffic to establish performance metrics"
+    }
+  ]
+}

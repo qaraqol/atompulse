@@ -1,0 +1,16 @@
+{
+  "name": "atompulse",
+  "version": "1.0.0",
+  "description": "A comprehensive tool for stress testing Atomic Assets API endpoints on the WAX Blockchain with various load patterns and collecting detailed performance metrics.",
+  "main": "stress-test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "commander": "^13.1.0",
+    "ora": "^8.2.0"
+  }
+}

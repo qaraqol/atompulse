@@ -28,7 +28,7 @@ A streamlined stress testing tool for Atomic Assets API endpoints on the WAX Blo
 
 ```
 git clone https://github.com/qaraqol/atompulse.git
-cd atomic-assets-stress-test
+cd atompulse
 ```
 
 2. Install dependencies:
